@@ -6,13 +6,19 @@
     <title>Document</title>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
+<script>
+</script>
+<style>
+</style>
 <body>
     <h1>Dynamic form with htmx</h1>
 
 <form method="post">
     {% csrf_token %}
     <div>
-        <select name="{{form.country.name}}" id="{{form.country.id_for_label}}" hx-get="/hx/state" hx-target="#{{form.state.id_for_label}}" hx-include="#id_country">
+        <select required name="{{form.country.name}}" id="{{form.country.id_for_label}}" 
+        hx-get="/hx/state" hx-target="#state-target" hx-include="#id_country">
+        <option value="" selected disabled >Select country</option>
         {% for country in countries %}
         <option value="{{country.pk}}">{{country}}</option>
         {% endfor %}
@@ -23,8 +29,8 @@
         {% endif %}
     </div>
     <div>
-        <select name="{{form.state.name}}" id="{{form.state.id_for_label}}">
-        </select>
+        <div id="state-target"></div>
+        <div id="city-target"></div>
     </div>
     <button type="submit">Invia</button>
 </form>
