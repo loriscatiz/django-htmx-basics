@@ -17,7 +17,7 @@
     {% csrf_token %}
     <div>
         <select required name="{{form.country.name}}" id="{{form.country.id_for_label}}" 
-        hx-get="/hx/state" hx-target="#state-target" hx-include="#id_country">
+        hx-get="/hx/state" hx-target="#state-target, #city-target"  hx-include="#id_country">
         <option value="" selected disabled >Select country</option>
         {% for country in countries %}
         <option value="{{country.pk}}">{{country}}</option>
@@ -30,7 +30,7 @@
     </div>
     <div>
         <div id="state-target"></div>
-        <div id="city-target"></div>
+        <div id="city-target" ></div>
     </div>
     <button type="submit">Invia</button>
 </form>
