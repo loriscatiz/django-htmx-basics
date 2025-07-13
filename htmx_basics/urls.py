@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path 
+from django.urls import path, include
 
 from django.shortcuts import render, redirect
 
@@ -24,10 +24,8 @@ from core.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path("",  lambda request: redirect("country")),
+    path('geography/', include('core.urls')),
 
-    path("hx/state", HxStateView.as_view(),  name="hx_state"),
-    path("hx/city", HxCityView.as_view(),  name="hx_city"),
+    path('contacts/', include('contacts.urls'))
 
-    path('countries/', CountryView.as_view(), name="country"),
 ]

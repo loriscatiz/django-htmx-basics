@@ -1,0 +1,14 @@
+                <option value="" selected disabled >Select Company</option>
+                {% for company in companies %}
+                    {% if company != last_added_company %}
+                    <option value="{{company.pk}}">{{company}}</option>
+
+                    {% else %}
+                    <option selected value="{{company.pk}}">{{company}}</option>
+                    {% endif %}
+                {% endfor %}
+
+
+            <div id="add-company-target" hx-swap-oob="true">
+                Company added successfully
+            </div>

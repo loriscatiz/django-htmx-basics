@@ -1,0 +1,30 @@
+{% extends "contacts/base.html" %}
+    
+{% block content %}
+    <form method="POST">
+        <div>
+            <label for="{{form.name.id_for_label}}">Nome:</label>
+            {{form.name}}
+        </div> 
+
+        <div>
+            <label for="{{form.email.id_for_label}}">Email:</label>
+            {{form.email}}
+        </div> 
+
+        <div>
+            <select required name="{{form.company.name}}" id="{{form.company.id_for_label}}" >
+                <option value="" selected disabled >Select Company</option>
+                {% for company in companies %}
+                    <option value="{{company.pk}}">{{company}}</option>
+                {% endfor %}
+            </select>
+            <button type="button" hx-get="hx/companies/add" hx-target="#add-company-target" hx-trigger="click">
+                Add a new company
+            </button>
+        </div> 
+
+        <button type="submit">Invia</button>
+    </form>
+        <div id="add-company-target"></div>
+{% endblock %}

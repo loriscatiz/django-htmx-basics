@@ -1,0 +1,6 @@
+<form  method="POST" hx-post="hx/companies/add" hx-target="#id_company, #add-company-target">
+    {% csrf_token %}
+    <label for="company_name">Company name: </label>
+    <input type="text" name="company_name" id="company_name">
+    <button>submit</button>
+</form>
